@@ -1,0 +1,71 @@
+<h2>Criando um Rormulario Reativo Simples</h2>
+<p>
+  Para criar nosso Formulario Reativo, devemos primeiro adicionar
+  <b>ReactiveFormsModule</b>
+  no <b>app.modulle</b> do projeto
+</p>
+<p>Agora adicione o <b>FormControl</b> no compoente que deseja</p>
+<p>No primeiro exemplo será criado um input chamado <b>Nome</b>, vejamos:</p>
+<label for="nome" style="display:block">Nome:</label>
+<input
+  id="nome"
+  name="nome"
+  type="text"
+  [formControl]="Nome"
+  style="display:block"
+/>
+{{ Nome.value }}
+<p>
+  Nesse exemplo criamos um controle de chamado Nome que sempre é iniciado com o
+  nome reginaldo
+</p>
+Linha de código de exemplo:<b>Nome = new FormControl('Reginaldo');</b>
+
+A classe FormControl fornece diversos metodos, um deles que irei apresentar é o
+setValue(), esse método pode ser muito util em uma inserção de valor no input
+sem a interação do usuario... Para validar essa ideia iremos criar um botão que
+busca através de um protocolo HTTP um nome qualquer, nesse caso o setValue()
+seria usado para apresentar o valor da resposta HTTP no input, vejamos:
+<p>
+  <button (click)="SetNome()">Buscar Nome</button>
+</p>
+veja que o input acima agora foi alterado para Pedro
+<hr />
+<h2>Criando um formulario Reativo Agrupado</h2>
+
+<p>Para isso iremos importar um novo <b>Nome</b>, vejamos:</p>
+
+<form action="" [formGroup]="cliente">
+  <div>
+    <label style="display:block">Nome:</label>
+    <input type="text" formControlName="nome" />
+  </div>
+  <div>
+    <label style="display:block">CPF:</label>
+    <input type="text" formControlName="cpf" />
+  </div>
+  <div formGroupName="endereco">
+    <h3>Endereço</h3>
+    <div>
+      <label style="display:block">CEP:</label>
+      <input type="text" formControlName="cep" />
+    </div>
+    <div>
+      <label style="display:block">Logradouro:</label>
+      <input type="text" formControlName="logradouro" />
+    </div>
+  </div>
+</form>
+<p>Observe o comportamento do Formulario</p>
+<p>
+  {{ cliente.value | json }}
+</p>
+<button (click)="AlterarCliente()">Alterar CPF e CEP</button>
+<br />
+Agora iremos alterar eu pedaço do formulario usando a função:<br />
+<b> patchValue(): Lembre-se que ele está contida em formGroup</b>
+<hr />
+
+<p>Status do formulario: {{cliente.status}}</p>
+
+<h2>Usando o Form Builder</h2>
