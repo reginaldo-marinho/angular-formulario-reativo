@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-component',
   templateUrl: './app.component.html',
 })
-export class AppComponent {
+export class AppComponent{
+  
+  @Input() Titulo: string;
   Nome = new FormControl('Reginaldo');
 
   SetNome() {
